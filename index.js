@@ -22,3 +22,4 @@ app.listen(port, () => {
 app.get("/api/products", (req, res) => {
   res.json(Products)
 });
+module.exports = app
