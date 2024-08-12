@@ -15,11 +15,12 @@ fetch("https://dummyjson.com/products")
 
 const port = process.env.PORT || 4000;
 
+app.get("/api/products", (req, res) => {
+  res.json(Products)
+});
+
 app.listen(port, () => {
   console.log(`App is listening on port ${port}...`)
 });
 
-app.get("/api/products", (req, res) => {
-  res.json(Products)
-});
 module.exports = app
