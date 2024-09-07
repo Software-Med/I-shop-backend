@@ -10,17 +10,18 @@ let Products = [];
 
 fetch("https://dummyjson.com/products")
 .then(res => res.json())
-.then(data => Products = data.products)
+.then((data) => {
+  Products = data.products
+  app.listen(port, () => {
+  console.log(`App is listening on port ${port}...`)
+})
+})
 .catch(err => console.log(err))
 
 const port = process.env.PORT || 4000;
 
 app.get("/api/products", (req, res) => {
   res.json(Products)
-});
-
-app.listen(port, () => {
-  console.log(`App is listening on port ${port}...`)
 });
 
 module.exports = app
