@@ -8,16 +8,6 @@ app.use(express.json());
 
 let Products;
 
-fetch("https://dummyjson.com/products")
-.then(res => res.json())
-.then((data) => {
-  Products = data.products
-  app.listen(port, () => {
-  console.log(`App is listening on port ${port}...`)
-})
-})
-.catch(err => console.log(err))
-
 const port = process.env.PORT || 4000;
 
 app.get("/", (req, res) => {
@@ -25,7 +15,16 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/products", (req, res) => {
-    res.json(Products)
+    fetch("https://dummyjson.com/products")
+  .then(result => result.json())
+  .then((data) => {
+   Products = data.products
+   res.json(Products)
+   console.log("sent")
+})
+.catch(err => console.log(err))
 });
-
+app.listen(port, () => {
+  console.log(`App is listening on port ${port}...`)
+})
 module.exports = app
