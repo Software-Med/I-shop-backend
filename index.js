@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-let Products = [];
+let Products;
 
 fetch("https://dummyjson.com/products")
 .then(res => res.json())
@@ -21,7 +21,9 @@ fetch("https://dummyjson.com/products")
 const port = process.env.PORT || 4000;
 
 app.get("/api/products", (req, res) => {
-  res.json(Products)
+  if (Products) {
+    res.json(Products)
+  }
 });
 
 module.exports = app
