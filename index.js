@@ -20,6 +20,10 @@ fetch("https://dummyjson.com/products")
 
 const port = process.env.PORT || 4000;
 
+app.get("/", (req,res) => {
+  res.status(200).redirect("/api/products")
+}
+
 app.get("/api/products", (req, res) => {
   if (Products) {
     res.json(Products)
